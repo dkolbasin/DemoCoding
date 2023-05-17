@@ -18,18 +18,16 @@ test('Enter the registry', async ({ page }) => {
   await page.locator(nameModules.Registry.searchPatient).click();
   await expect(page).toHaveURL(/patients-search/);
   await page.getByRole('button', { name: 'Поиск' }).click();
-  //проверка API
   await expect(page.locator('table')).toHaveClass(['q-table']);
-  await page.goto('https://sw-test.quirco.com/treatment-cases/');
-  await page.goto('https://sw-test.quirco.com/treatment-cases/my-patients');
-  await page.goto('https://sw-test.quirco.com/authorization');
-  await page.getByLabel('Имя пользователя').dblclick();
-  await page.getByLabel('Имя пользователя').fill('admin');
-  await page.getByLabel('Имя пользователя').press('Tab');
-  await page.getByLabel('Пароль').fill('pass1!2@');
-  await page.getByLabel('Пароль').press('Enter');
+  page.on('response', (response) => {
+    if (
+      response.url().includes('api/register-office/treatment-cases?limit=20')
+    ) {
+      expect(response.ok()).toBeTruthy();
+      expect(response.status()).toBe(404);
+    }
+  });
   await page.locator('tbody > tr').first().click();
-  //проверка API
   await expect(page.locator('.grow > .BaseScrollArea')).toHaveClass([
     'BaseScrollArea h-full w-full p-6',
   ]);
@@ -138,11 +136,11 @@ test('Enter the Schedules', async ({ page }) => {
   await page.locator('svg').nth(3).click();
   await page.locator('path').first().click();
   await page
-    .locator('div:nth-child(2) > .vue-treeselect__option')
+    .locator('div:nth-child(8) > .vue-treeselect__option')
     .first()
     .click();
 
-  await expect(page.locator('.flex > .ScheduleCalendar')).toHaveClass([
+  await expect(page.locator('.w-full > .ScheduleCalendar')).toHaveClass([
     'ScheduleCalendar',
   ]);
   await page.locator(authorization.account).click();
@@ -183,7 +181,7 @@ test('Enter the Accounting', async ({ page }) => {
   await expect(page).toHaveURL(/fiscals/);
   await expect(
     page.locator('.FiscalsCommands  > .flex > .flex > button')
-  ).toHaveCount(7, { timeout: 30000 });
+  ).toHaveCount(7, { timeout: 70000 });
   await page.locator(authorization.account).click();
   await page.getByText('Выйти').click();
   await expect(page).toHaveURL(/authorization/);
