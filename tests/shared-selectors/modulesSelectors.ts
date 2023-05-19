@@ -1,26 +1,22 @@
 export const nameModules = {
   Registry: {
     moduleRegistry: 'a[label="Регистратура"]',
-    searchPatient:
-      'a[class="text-sanatorium-primary font-medium router-link-exact-active whitespace-nowrap p-3 hover:text-sanatorium-primary"]',
+    searchPatient: 'text=Поиск пациентов',
   },
   Patients: {
     modulePatient: 'a[label="Пациенты"]',
-    myPatient:
-      'a[class="text-sanatorium-primary font-medium router-link-exact-active whitespace-nowrap p-3 hover:text-sanatorium-primary"]',
+    myPatient: 'text=Мои пациенты',
     myConsultation: 'text=Мои консультации',
     searchPatient: 'text=Поиск пациентов',
   },
   releaseControl: {
     moduleReleaseControl: 'a[label="Отпуск"]',
-    Procedures:
-      'a[class="text-sanatorium-primary font-medium router-link-exact-active whitespace-nowrap p-3 hover:text-sanatorium-primary"]',
-    Medicines: 'a[class="whitespace-nowrap p-3 hover:text-sanatorium-primary"]',
+    Procedures: 'text=Процедуры',
+    Medicines: 'text=Медикаменты',
   },
   Dispatching: {
     moduleDispatching: 'a[label="Диспетчеризация"]',
-    myPatient:
-      'a[class="text-sanatorium-primary font-medium router-link-exact-active whitespace-nowrap p-3 hover:text-sanatorium-primary"]',
+    myPatient: 'text=Мои пациенты',
   },
   Schedules: {
     moduleSchedules: 'a[label="Расписание"]',
