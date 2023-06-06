@@ -49,7 +49,7 @@ test('Enter the registry', async ({ page }) => {
       expect(response.status()).toBe(200);
     }
   });
-  await page.waitForURL("**/registration/patients-search");
+  await page.waitForURL('**/registration/patients-search');
   await page.locator(nameModules.Registry.searchPatient).click();
   await expect(page).toHaveURL(/registration\/patients-search/);
   await searchButton.locator('visible=true').click();
@@ -262,7 +262,7 @@ test('Enter the Schedules', async ({ page }) => {
 
   const ChooseSchedule = '[class="text-grey-7 text-base"]';
   const openSchedule = await page.locator('div > .vue-treeselect__option');
-  const openGroupSchedule = await page.locator('path');
+  const openGroupSchedule = await page.locator('[class="vue-treeselect__option-arrow-container"]');
   const listScheduleOfGroup = await page.locator('[class="vue-treeselect__list"]');
   const displayedSchedule = await page.locator('.w-full > .ScheduleCalendar');
   await page.locator(nameModules.Schedules.moduleSchedules).click();
